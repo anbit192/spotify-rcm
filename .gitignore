@@ -2,3 +2,4 @@
 *.pickle
 *.cache
 *.env
+data.csv
