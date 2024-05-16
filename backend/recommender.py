@@ -6,6 +6,9 @@ import pandas as pd
 import pickle
 from pathlib import Path
 import os
+from .test.get_audio_feature import get_feature
+from fastapi import FastAPI
+from pydantic import BaseModel
 
 cwd = Path(os.getcwd())
 model_path = cwd / "models"
@@ -22,6 +25,27 @@ with open(model_path / "kmean.pickle", "rb") as f:
 
 print(pca.explained_variance_)
 # df = pd.read_csv("data_with_label.csv")
+
+# Build API 
+app = FastAPI()
+
+class InputData(BaseModel):
+    input_value: str
+
+@app.post("/recommend_top10_spostify")
+def recommend_top10_spostify(data: InputData):
+
+
+
+
+    return None
+
+
+
+
+
+
+
 
 
 
