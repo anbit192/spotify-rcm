@@ -10,7 +10,7 @@ import os
 cwd = Path(os.getcwd())
 model_path = cwd / "models"
 
-with open(model_path / "pca_model.pickle", "rb") as f:
+with open(model_path / "pca.pickle", "rb") as f:
     pca: PCA = pickle.load(f)
 
 with open(model_path / "scaler.pickle", "rb") as f:
@@ -20,7 +20,8 @@ with open(model_path / "kmean.pickle", "rb") as f:
     k_mean: KMeans = pickle.load(f)
 
 
-df = pd.read_csv("data_with_label.csv")
+print(pca.explained_variance_)
+# df = pd.read_csv("data_with_label.csv")
 
 
 
