@@ -5,8 +5,8 @@ import './Header.css';
 const Header = () => (
   <header className="header">
     <Link to="/">Home</Link>
-    <Link to="/search">Search</Link>
-    <Link to="/realtime">Real Time Search</Link>
+    <Link to="/search">Tìm kiếm bằng link bài hát</Link>
+    <Link to="/realtime">Tìm kiếm bài hát</Link>
   </header>
 );
 
