@@ -8,7 +8,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import './App.css';
 import { getAuth } from './services/auth';
-
+import SearchByNamePage from './pages/SearchByNamePage';
 
 function App() {
   
@@ -40,6 +40,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/song/:id" element={<SongDetailsPage />} />
+          <Route path = "/realtime" element = {<SearchByNamePage/>}/>
         </Routes>
         <Footer />
       </Router>
