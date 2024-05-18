@@ -36,8 +36,6 @@ class InputData(BaseModel):
 def recommend_top10_spostify(data: InputData):
 
 
-
-
     return None
 
 
