@@ -3,6 +3,6 @@ tạo folder tên models ở trong backend và vứt 3 file vừa down vào tron
 
 pip install -r requirements.txt
 
-chạy sv backend và frontend:
+chạy sv backend và frontend: <br/>
     - uvicorn api:app --reload <br/>
     - npm start
