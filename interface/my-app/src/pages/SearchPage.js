@@ -24,7 +24,7 @@ const SearchPage = () => {
 
   return (
     <div className="search-page">
-      <h1>Search by Track ID</h1>
+      <h1>Tìm kiếm bằng link hoặc ID của bài hát</h1>
       <SearchBox onSearch={handleSearch} />
       {trackDetails && (
         <div className="track-details">
