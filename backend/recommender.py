@@ -51,6 +51,7 @@ class Recommender:
         # Xây dựng chỉ số Faiss
         index = faiss.IndexFlatIP(data.shape[1])  # vector_compare.shape[1] là số chiều của vector
         index.add(normalized_compare)
+        print(index)
 
         num_neighbors = k + 1  # Số lượng hàng xóm gần nhất cần tìm
 
@@ -65,7 +66,10 @@ class Recommender:
         transformed_input = self.pca.transform(self.scaler.transform([input_vector])).flatten()
         pred_label = self.k_mean.predict([transformed_input])[0]
 
+        print(f"Pred label: {pred_label}")
+
         grouped_data = self.transformed_data[self.df_labels.to_numpy() == pred_label]
+        print(f"grouped shape: {grouped_data.shape}")
         grouped_ID = self.df["ID"].to_numpy()[self.df_labels.to_numpy() == pred_label]
 
         dist, idxs = self.get_k_closest(transformed_input, grouped_data, k)
@@ -80,7 +84,7 @@ def main():
     test_input = np.array([ 6.89000e-01,  2.68000e-01, -1.57220e+01,  5.05000e-01,9.23000e-01,  1.69000e-06,  3.10000e-01,  5.69000e-01,1.21202e+02,  9.10630e+04])
     
     rcm = get_instance()
-    print(rcm.get_recommendation_ID(test_input, 10))
+    print(rcm.get_recommendation_ID(test_input, 20))
     # print(test_input)
 
 if __name__ == "__main__":

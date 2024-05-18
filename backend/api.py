@@ -43,10 +43,13 @@ class TrackInfos(BaseModel):
 def process_json_input(input_track_feats):
     dict = input_track_feats.dict()
     drops = ["key", "mode", "time_signature"]
+    print(dict)
     for key in drops:
         dict.pop(key, None)
     print(dict)
-    input_vector = [dict[key] for key in dict.keys()]
+    cols = ['danceability', 'energy', 'loudness', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'duration_ms']
+    input_vector = [dict[key] for key in cols]
+    print(input_vector)
 
     return input_vector
 
@@ -60,7 +63,7 @@ async def get_recommended_tracks(input_track_feats: AudioFeatures):
     - 422: Truyền dữ liệu không hợp lệ.
     """
     input_vector = process_json_input(input_track_feats)
-    return recommender.get_instance().get_recommendation_ID(input_vector)
+    return recommender.Recommender().get_recommendation_ID(input_vector)
 
 
 @app.get("/{id}", response_model=TrackInfos, status_code=status.HTTP_200_OK)
