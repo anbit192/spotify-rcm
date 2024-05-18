@@ -46,29 +46,28 @@ const RecommendationButtonByUs = ({ id, accessToken, onGetTrackFeatures }) => {
       });
       const trackFeatures = spotifyResponse.data;
       onGetTrackFeatures(trackFeatures);
-
       // Step 2: Map track features to match the AudioFeatures model in FastAPI
-      const mappedFeatures = {
-        acousticness: trackFeatures.acousticness,
-        danceability: trackFeatures.danceability,
-        duration_ms: trackFeatures.duration_ms,
-        energy: trackFeatures.energy,
-        instrumentalness: trackFeatures.instrumentalness,
-        key: trackFeatures.key,
-        liveness: trackFeatures.liveness,
-        loudness: trackFeatures.loudness,
-        mode: trackFeatures.mode,
-        speechiness: trackFeatures.speechiness,
-        tempo: trackFeatures.tempo,
-        time_signature: trackFeatures.time_signature,
-        valence: trackFeatures.valence
-      };
+      // const mappedFeatures = {
+      //   acousticness: trackFeatures.acousticness,
+      //   danceability: trackFeatures.danceability,
+      //   duration_ms: trackFeatures.duration_ms,
+      //   energy: trackFeatures.energy,
+      //   instrumentalness: trackFeatures.instrumentalness,
+      //   key: trackFeatures.key,
+      //   liveness: trackFeatures.liveness,
+      //   loudness: trackFeatures.loudness,
+      //   mode: trackFeatures.mode,
+      //   speechiness: trackFeatures.speechiness,
+      //   tempo: trackFeatures.tempo,
+      //   time_signature: trackFeatures.time_signature,
+      //   valence: trackFeatures.valence
+      // };
       
 
-      // Step 3: Post mapped track features to local API and get track IDs
-      console.log(`map`, mappedFeatures)
+      // // Step 3: Post mapped track features to local API and get track IDs
+      // console.log(`map`, mappedFeatures)
       const localApiEndpoint = 'http://127.0.0.1:8000/recommend';
-      const localResponse = await axios.get(localApiEndpoint, mappedFeatures);
+      const localResponse = await axios.get(localApiEndpoint, trackFeatures);
       const trackIds = localResponse.data.id; // Extract the list of track IDs
       
       
