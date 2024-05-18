@@ -115,8 +115,8 @@ const RecommendationButtonByUs = ({ id, accessToken, onGetTrackFeatures }) => {
   return (
     <div className="container"> {/* Container with centered content */}
       <button className="button" onClick={handleClick} disabled={isLoading}>
-        {isLoading ? 'Loading...' : 'Get Recommend By Us'}
-      </button>
+        {isLoading ? 'Loading...' : 'Gợi ý của chúng tôi'}
+      </button> 
       <div id="player-container"></div>
     </div>
   );
