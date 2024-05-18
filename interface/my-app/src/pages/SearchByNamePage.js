@@ -110,13 +110,13 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link } from 'react-router-dom';
 import SearchBoxRealTime from '../components/SearchBoxRealTime';
+import './SearchByNamePage.css'; // Import the CSS file
 
 const SearchByNamePage = () => {
   const [searchResults, setSearchResults] = useState([]);
 
-  // Function to handle the search term and fetch data from Spotify API
   const handleSearch = async (searchTerm) => {
     if (!searchTerm) {
       setSearchResults([]);
@@ -131,7 +131,7 @@ const SearchByNamePage = () => {
       }
 
       const response = await axios.get(
-        `https://api.spotify.com/v1/search?q=${encodeURIComponent(searchTerm)}&type=track&limit=10`, // Limit to 10 results
+        `https://api.spotify.com/v1/search?q=${encodeURIComponent(searchTerm)}&type=track&limit=10`,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -165,3 +165,4 @@ const SearchByNamePage = () => {
 };
 
 export default SearchByNamePage;
+

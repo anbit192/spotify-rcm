@@ -11,22 +11,30 @@
 // export default SearchPage;
 
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import SearchBox from '../components/SearchBox';
+import './SearchPage.css';
 
 const SearchPage = () => {
-  const [audioFeatures, setAudioFeatures] = useState(null);
+  const [trackDetails, setTrackDetails] = useState(null);
 
-  // Function to handle the retrieved audio features data
-  const handleSearch = (audioFeaturesData) => {
-    setAudioFeatures(audioFeaturesData);
+  const handleSearch = (details) => {
+    setTrackDetails(details);
   };
 
   return (
     <div className="search-page">
-      <h1>Search Page</h1>
-      {/* Pass the handleSearch function to the SearchBox component */}
+      <h1>Search by Track ID</h1>
       <SearchBox onSearch={handleSearch} />
-      {/* Render audio features data or any other components */}
+      {trackDetails && (
+        <div className="track-details">
+          <Link to={`/song/${trackDetails.id}`}>
+            <img src={trackDetails.album.images[0].url} alt={trackDetails.name} />
+            <h2>{trackDetails.name}</h2>
+            <p>Artist: {trackDetails.artists.map(artist => artist.name).join(', ')}</p>
+          </Link>
+        </div>
+      )}
     </div>
   );
 };
