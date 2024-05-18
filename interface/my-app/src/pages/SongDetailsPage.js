@@ -180,9 +180,10 @@ const SongDetailsPage = () => {
       </div>
 
       {/* Display track features */}
+        
       {trackFeatures && (
         <div>
-          <h2>Track Features</h2>
+          <h2>Một số đặc trưng của bài</h2>
           <p>Danceability: {trackFeatures.danceability}</p>
           <p>Energy: {trackFeatures.energy}</p>
           <p>Key: {trackFeatures.key}</p>
@@ -191,7 +192,7 @@ const SongDetailsPage = () => {
       )}
 
       {/* Display recommended tracks */}
-      <h2>Recommended Tracks</h2>
+      <h2>Gợi ý thông qua Spotify API</h2>
       <ul className="recommended-tracks">
         {recommendedTracks.map((track) => (
           <li key={track.id}>
