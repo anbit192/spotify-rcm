@@ -57,10 +57,12 @@
 // };
 
 // export default SongDetailsPage;
+
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import RecommendationButton from '../components/RecommendationButton';
+import './SongDetailsPage.css'; // Import the CSS file
 
 const SongDetailsPage = () => {
   const { id } = useParams();
@@ -101,54 +103,47 @@ const SongDetailsPage = () => {
 
   return (
     <div className="song-details-page">
-      {/* <h1>{trackDetails.name}</h1>
+      <h1>{trackDetails.name}</h1>
       <p>Artist: {trackDetails.artists.map((artist) => artist.name).join(', ')}</p>
       <p>Album: {trackDetails.album.name}</p>
-      <img src={trackDetails.album.images[0].url} alt={trackDetails.name} /> */}
-      <h1>{trackDetails.name}</h1>
-  <p>Artist: {trackDetails.artists.map((artist) => artist.name).join(', ')}</p>
-  <p>Album: {trackDetails.album.name}</p>
-  <img src={trackDetails.album.images[0].url} alt={trackDetails.name} />
-  
-  {/* Embed Spotify player for the selected track */}
-  <iframe
-    src={`https://open.spotify.com/embed/track/${trackDetails.id}`}
-    width="300"
-    height="80"
-    frameBorder="0"
-    allowtransparency="true"
-    allow="encrypted-media"
-  ></iframe>
+      <img src={trackDetails.album.images[0].url} alt={trackDetails.name} />
       
-      {/* Render the recommendation button */}
-      <RecommendationButton 
-        trackId={id}
-        accessToken={accessToken}
-        onRecommendation={handleRecommendation}
-      />
-
-      {/* Display the recommended tracks */}
-      <h2>Recommended Tracks</h2>
-      {/* <ul>
-        {recommendedTracks.map((track) => (
-          <li key={track.id}>{track.name} - {track.artists.map((artist) => artist.name).join(', ')}</li>
-        ))}
-      </ul> */}
-      {recommendedTracks.map((track) => (
-    <li key={track.id}>
+      {/* Embed Spotify player for the selected track */}
       <iframe
-        src={`https://open.spotify.com/embed/track/${track.id}`}
+        src={`https://open.spotify.com/embed/track/${trackDetails.id}`}
         width="300"
         height="80"
         frameBorder="0"
         allowtransparency="true"
         allow="encrypted-media"
       ></iframe>
-      <p>{track.name} - {track.artists.map((artist) => artist.name).join(', ')}</p>
       
-    </li>
-  ))}
-      
+      {/* Render the recommendation button */}
+      <div className="recommendation-button">
+        <RecommendationButton 
+          trackId={id}
+          accessToken={accessToken}
+          onRecommendation={handleRecommendation}
+        />
+      </div>
+
+      {/* Display the recommended tracks */}
+      <h2>Recommended Tracks</h2>
+      <ul className="recommended-tracks">
+        {recommendedTracks.map((track) => (
+          <li key={track.id}>
+            <iframe
+              src={`https://open.spotify.com/embed/track/${track.id}`}
+              width="300"
+              height="80"
+              frameBorder="0"
+              allowtransparency="true"
+              allow="encrypted-media"
+            ></iframe>
+            <p>{track.name} - {track.artists.map((artist) => artist.name).join(', ')}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

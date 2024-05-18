@@ -1,15 +1,57 @@
 .header {
-    background-color: #333;
-    padding: 10px;
+  background-color: #333;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header a {
+  color: white;
+  margin-right: 20px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.header a:last-child {
+  margin-right: 0;
+}
+
+.header a:hover {
+  color: #1db954; /* Spotify green */
+  text-decoration: underline;
+  transform: scale(1.05);
+}
+
+.header a.active {
+  font-weight: bold;
+  color: #1db954; /* Spotify green */
+}
+
+.header nav {
+  display: flex;
+  gap: 20px;
+}
+
+.header .logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
+
+  .header nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+
   .header a {
-    color: white;
-    margin-right: 10px;
-    text-decoration: none;
+    margin-right: 0;
   }
-  
-  .header a:hover {
-    text-decoration: underline;
-  }
-  
+}
