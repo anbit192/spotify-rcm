@@ -148,7 +148,7 @@ const SearchByNamePage = () => {
 
   return (
     <div className="search-by-name-page">
-      <h1>Search by Song Name</h1>
+      <h1>Tìm kiếm bằng tên bài hát</h1>
       <SearchBoxRealTime onSearch={handleSearch} />
       <ul>
         {searchResults.map((track) => (
