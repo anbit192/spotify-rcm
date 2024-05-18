@@ -36,32 +36,42 @@
 
 // SearchBox.js
 // SearchBox.js
+
 import React, { useState } from 'react';
 import axios from 'axios';
 
 const SearchBox = ({ onSearch }) => {
-  const [trackId, setTrackId] = useState('');
+  const [inputValue, setInputValue] = useState('');
 
   const handleChange = (event) => {
-    setTrackId(event.target.value);
+    setInputValue(event.target.value);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      // Retrieve audio features of the track using the user-provided track ID
-      const audioFeatures = await getAudioFeatures(trackId);
+      const trackId = extractTrackId(inputValue);
 
-      // Pass the audio features data to the parent component
-      onSearch(audioFeatures);
+      // Retrieve track details using the extracted track ID
+      const trackDetails = await getTrackDetails(trackId);
+
+      // Pass the track details data to the parent component
+      onSearch(trackDetails);
     } catch (error) {
-      console.error('Error retrieving audio features:', error);
-      alert('An error occurred while retrieving audio features. Please try again.');
+      console.error('Error retrieving track details:', error);
+      alert('An error occurred while retrieving track details. Please try again.');
     }
   };
 
-  // Function to retrieve audio features of a track from Spotify API
-  const getAudioFeatures = async (trackId) => {
+  // Function to extract the track ID from a Spotify URL or plain track ID
+  const extractTrackId = (input) => {
+    const regex = /(?:spotify:track:|https:\/\/open\.spotify\.com\/track\/|\/track\/)([a-zA-Z0-9]{22})/;
+    const match = input.match(regex);
+    return match ? match[1] : input;
+  };
+
+  // Function to retrieve track details from Spotify API
+  const getTrackDetails = async (trackId) => {
     try {
       // Retrieve access token from local storage
       const accessToken = localStorage.getItem('accessToken');
@@ -78,14 +88,13 @@ const SearchBox = ({ onSearch }) => {
         },
       };
 
-      // Make a request to Spotify API to get audio features of the track
-      const response = await axios.get(`https://api.spotify.com/v1/audio-features/${trackId}`, headers);
+      // Make a request to Spotify API to get track details
+      const response = await axios.get(`https://api.spotify.com/v1/tracks/${trackId}`, headers);
 
-      // Return the audio features data
-      console.log(response.data)
+      // Return the track details data
       return response.data;
     } catch (error) {
-      console.error('Error getting audio features:', error);
+      console.error('Error getting track details:', error);
       throw error;
     }
   };
@@ -94,11 +103,11 @@ const SearchBox = ({ onSearch }) => {
     <form onSubmit={handleSubmit}>
       <input
         type="text"
-        placeholder="Enter Track ID..."
-        value={trackId}
+        placeholder="Enter Track URL or ID..."
+        value={inputValue}
         onChange={handleChange}
       />
-      <button type="submit">Get Audio Features</button>
+      <button type="submit">Search</button>
     </form>
   );
 };
