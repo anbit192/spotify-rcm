@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    height: 100vh; /* Set container height to full viewport height */
+    margin-top: 20px; /* Adjust top margin to add space between Button A and this component */
+  }
+  
+  .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Change the background color on hover */
+  .button:hover {
+    background-color: #45a049; /* Darker green */
+  }
+  
+  /* Disabled button style */
+  .button:disabled {
+    background-color: #dddddd; /* Light gray */
+    color: #555; /* Dark gray */
+    cursor: not-allowed;
+  }
+  
