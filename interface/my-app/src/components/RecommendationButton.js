@@ -46,7 +46,7 @@ const RecommendationButton = ({ trackId, accessToken, onRecommendation }) => {
 
   return (
     <div className="recommendation-button">
-      <button onClick={handleClick}>Get Recommendations</button>
+      <button onClick={handleClick}>Get Recommendations By Spotify API</button>
     </div>
   );
 };

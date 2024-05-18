@@ -1,0 +1,24 @@
+.home-page {
+    background-color: #f0f0f0; /* Light gray background */
+    padding: 20px;
+  }
+  
+  .home-page-title {
+    color: #333; /* Dark gray text */
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  .member-list {
+    background-color: #fff; /* White background for member list */
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  }
+  
+  .member-name {
+    color: #555; /* Darker gray text for member names */
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
