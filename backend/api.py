@@ -51,7 +51,7 @@ def process_json_input(input_track_feats):
     return input_vector
 
 
-@app.get("/recommend", response_model=TrackID, status_code=status.HTTP_200_OK)
+@app.post("/recommend", response_model=TrackID, status_code=status.HTTP_200_OK)
 async def get_recommended_tracks(input_track_feats: AudioFeatures):
     """
     Hàm nhận features 1 bài nhạc để nhận lại IDs đề xuất của các bài nhạc khác
