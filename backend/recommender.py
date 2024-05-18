@@ -23,22 +23,6 @@ with open(model_path / "kmean.pickle", "rb") as f:
     k_mean: KMeans = pickle.load(f)
 
 
-print(pca.explained_variance_)
-# df = pd.read_csv("data_with_label.csv")
-
-# Build API 
-app = FastAPI()
-
-class InputData(BaseModel):
-    input_value: str
-
-@app.post("/recommend_top10_spostify")
-def recommend_top10_spostify(data: InputData):
-
-
-
-
-    return None
 
 
 
