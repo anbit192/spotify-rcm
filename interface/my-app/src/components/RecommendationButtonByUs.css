@@ -8,19 +8,14 @@
   }
   
   .button {
-    width: 200px; /* Set a fixed width for the button */
-    background-color: #4CAF50; /* Green */
-    border: none;
+    background-color: #1DB954; /* Spotify green */
     color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
     font-size: 16px;
-    margin: 4px 2px;
     cursor: pointer;
-    border-radius: 8px; /* Adjust border radius */
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s, transform 0.3s;
   }
   
   /* Change the background color on hover */

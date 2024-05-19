@@ -39,4 +39,17 @@ body {
   padding: 20px;
   text-align: center;
 }
+/* src/App.css */
+body.light {
+  background-color: white;
+  color: black;
+}
+
+body.dark {
+  background-color: black;
+  color: white;
+}
+
+/* Additional styles for your components */
+
 
