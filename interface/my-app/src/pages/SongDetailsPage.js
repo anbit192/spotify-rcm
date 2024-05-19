@@ -48,7 +48,7 @@
 //       <p>Artist: {trackDetails.artists.map((artist) => artist.name).join(', ')}</p>
 //       <p>Album: {trackDetails.album.name}</p>
 //       <img src={trackDetails.album.images[0].url} alt={trackDetails.name} />
-      
+
 //       {/* Embed Spotify player for the selected track */}
 //       <iframe
 //         src={`https://open.spotify.com/embed/track/${trackDetails.id}`}
@@ -58,7 +58,7 @@
 //         allowtransparency="true"
 //         allow="encrypted-media"
 //       ></iframe>
-      
+
 //       {/* Render the recommendation buttons */}
 //       <div className="recommendation-buttons">
 //         <RecommendationButton 
@@ -101,8 +101,32 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import RecommendationButton from '../components/RecommendationButton';
-import RecommendationButtonByUs from '../components/RecommendationButtonByUs'; 
+import RecommendationButtonByUs from '../components/RecommendationButtonByUs';
 import './SongDetailsPage.css';
+
+const numberToNote = {
+  0: 'C',
+  1: 'C#',
+  2: 'D',
+  3: 'D#',
+  4: 'E',
+  5: 'F',
+  6: 'F#',
+  7: 'G',
+  8: 'G#',
+  9: 'A',
+  10: 'A#',
+  11: 'B',
+  12: 'C'
+};
+
+const getModeText = (mode) => {
+  return mode === 1 ? 'Minor' : 'Major';
+};
+
+const getKeyText = (key) => {
+  return numberToNote[key] || 'Unknown';
+};
 
 const SongDetailsPage = () => {
   const { id } = useParams();
@@ -143,8 +167,6 @@ const SongDetailsPage = () => {
     console.log('Received track features:', trackFeatures);
     setTrackFeatures(trackFeatures);
   };
-  
-  
 
   if (!trackDetails) {
     return <div>Loading...</div>;
@@ -156,7 +178,7 @@ const SongDetailsPage = () => {
       <p>Artist: {trackDetails.artists.map((artist) => artist.name).join(', ')}</p>
       <p>Album: {trackDetails.album.name}</p>
       <img src={trackDetails.album.images[0].url} alt={trackDetails.name} />
-      
+
       <iframe
         src={`https://open.spotify.com/embed/track/${trackDetails.id}`}
         width="300"
@@ -165,49 +187,47 @@ const SongDetailsPage = () => {
         allowtransparency="true"
         allow="encrypted-media"
       ></iframe>
-      
+
       <div className="recommendation-buttons">
-        <RecommendationButton 
+        <RecommendationButton
           trackId={id}
           accessToken={accessToken}
           onRecommendation={handleRecommendation}
         />
-        <RecommendationButtonByUs 
+        
+        <h2>Gợi ý thông qua Spotify API</h2>
+        <ul className="recommended-tracks">
+          {recommendedTracks.map((track) => (
+            <li key={track.id}>
+              <iframe
+                src={`https://open.spotify.com/embed/track/${track.id}`}
+                width="300"
+                height="80"
+                frameBorder="0"
+                allowtransparency="true"
+                allow="encrypted-media"
+              ></iframe>
+              <p>{track.name} - {track.artists.map((artist) => artist.name).join(', ')}</p>
+            </li>
+          ))}
+        </ul>
+
+        <RecommendationButtonByUs
           id={id}
           accessToken={accessToken}
           onGetTrackFeatures={handleGetTrackFeatures}
         />
       </div>
 
-      {/* Display track features */}
-        
       {trackFeatures && (
         <div>
           <h2>Một số đặc trưng của bài</h2>
-          <p>Danceability: {trackFeatures.danceability}</p>
-          <p>Energy: {trackFeatures.energy}</p>
-          <p>Key: {trackFeatures.key}</p>
+          <p>Mode: {getModeText(trackFeatures.mode)}</p>
+          <p>Time Signature: {trackFeatures.time_signature}</p>
+          <p>Key: {getKeyText(trackFeatures.key)}</p>
           {/* Display other track features as needed */}
         </div>
       )}
-
-      {/* Display recommended tracks */}
-      <h2>Gợi ý thông qua Spotify API</h2>
-      <ul className="recommended-tracks">
-        {recommendedTracks.map((track) => (
-          <li key={track.id}>
-            <iframe
-              src={`https://open.spotify.com/embed/track/${track.id}`}
-              width="300"
-              height="80"
-              frameBorder="0"
-              allowtransparency="true"
-              allow="encrypted-media"
-            ></iframe>
-            <p>{track.name} - {track.artists.map((artist) => artist.name).join(', ')}</p>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 };
