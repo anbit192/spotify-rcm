@@ -225,6 +225,8 @@ const SongDetailsPage = () => {
           <p>Mode: {getModeText(trackFeatures.mode)}</p>
           <p>Time Signature: {trackFeatures.time_signature}</p>
           <p>Key: {getKeyText(trackFeatures.key)}</p>
+          <p>Tempo: trackFeatures.tempo</p>
+
           {/* Display other track features as needed */}
         </div>
       )}
