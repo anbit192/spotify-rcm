@@ -7,4 +7,7 @@ pip install -r requirements.txt
 
 chạy sv backend và frontend: <br/>
     - uvicorn api:app --reload <br/>
-    - npm start
+Vào folder interface/my-app:
+- npm install
+- npm start
+    
