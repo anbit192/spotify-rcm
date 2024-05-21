@@ -4,6 +4,8 @@ from typing import List
 import recommender
 from fastapi.middleware.cors import CORSMiddleware
 
+rcm = recommender.get_instance()
+
 app = FastAPI()
 
 app.add_middleware(
@@ -63,7 +65,7 @@ async def get_recommended_tracks(input_track_feats: AudioFeatures):
     - 422: Truyền dữ liệu không hợp lệ.
     """
     input_vector = process_json_input(input_track_feats)
-    return recommender.get_instance().get_recommendation_ID(input_vector)
+    return rcm.get_recommendation_ID(input_vector)
 
 
 @app.get("/{id}", response_model=TrackInfos, status_code=status.HTTP_200_OK)
