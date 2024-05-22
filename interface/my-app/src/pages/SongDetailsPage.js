@@ -181,12 +181,43 @@ const SongDetailsPage = () => {
 
       <iframe
         src={`https://open.spotify.com/embed/track/${trackDetails.id}`}
-        width="300"
+        width="640"
         height="80"
         frameBorder="0"
         allowtransparency="true"
         allow="encrypted-media"
       ></iframe>
+
+      {trackFeatures && (
+        <div className='audiofeats-div'>
+          <div className='h2-div'>
+            <h2>Một số đặc trưng:</h2>
+          </div>
+
+          <table className='audiofeats-table'>
+            <tr>
+              <th>Key</th>
+              <th>Mode</th>
+              <th>Tempo</th>
+              <th>Time Signature</th>
+            </tr>
+            <tr>
+              <td>{getKeyText(trackFeatures.key)}</td>
+              <td>{getModeText(trackFeatures.mode)}</td>
+              <td>{Math.round(trackFeatures.tempo)} BPM</td>
+              <td>{trackFeatures.time_signature}/4</td>
+            </tr>
+          </table>
+
+          {/* Display other track features as needed */}
+        </div>
+      )}
+
+      <RecommendationButtonByUs
+        id={id}
+        accessToken={accessToken}
+        onGetTrackFeatures={handleGetTrackFeatures}
+      />
 
       <div className="recommendation-buttons">
         <RecommendationButton
@@ -195,41 +226,33 @@ const SongDetailsPage = () => {
           onRecommendation={handleRecommendation}
         />
         
-        <h2>Gợi ý thông qua Spotify API</h2>
-        <ul className="recommended-tracks">
+        <div >
+          <ul className="recommended-tracks"></ul>
           {recommendedTracks.map((track) => (
-            <li key={track.id}>
-              <iframe
-                src={`https://open.spotify.com/embed/track/${track.id}`}
-                width="300"
-                height="80"
-                frameBorder="0"
-                allowtransparency="true"
-                allow="encrypted-media"
-              ></iframe>
-              <p>{track.name} - {track.artists.map((artist) => artist.name).join(', ')}</p>
-            </li>
+            <div>
+              <div key={track.id}>
+                <iframe
+                  src={`https://open.spotify.com/embed/track/${track.id}`}
+                  width="640"
+                  height="80"
+                  frameBorder="0"
+                  allowtransparency="true"
+                  allow="encrypted-media"
+                ></iframe>
+                {/* <p>{track.name} - {track.artists.map((artist) => artist.name).join(', ')}</p> */}
+              </div>
+              
+            </div>
           ))}
-        </ul>
+        </div>
 
-        <RecommendationButtonByUs
+        {/* <RecommendationButtonByUs
           id={id}
           accessToken={accessToken}
           onGetTrackFeatures={handleGetTrackFeatures}
-        />
+        /> */}
       </div>
 
-      {trackFeatures && (
-        <div>
-          <h2>Một số đặc trưng của bài</h2>
-          <p>Mode: {getModeText(trackFeatures.mode)}</p>
-          <p>Time Signature: {trackFeatures.time_signature}</p>
-          <p>Key: {getKeyText(trackFeatures.key)}</p>
-          <p>Tempo: {trackFeatures.tempo}</p>
-
-          {/* Display other track features as needed */}
-        </div>
-      )}
     </div>
   );
 };

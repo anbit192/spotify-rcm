@@ -106,7 +106,7 @@ const RecommendationButtonByUs = ({ id, accessToken, onGetTrackFeatures }) => {
     limitedTrackIds.forEach(trackId => {
       const iframe = document.createElement('iframe');
       iframe.src = `https://open.spotify.com/embed/track/${trackId}`;
-      iframe.width = '300';
+      iframe.width = '640';
       iframe.height = '80';
       iframe.frameBorder = '0';
       iframe.allowTransparency = 'true';

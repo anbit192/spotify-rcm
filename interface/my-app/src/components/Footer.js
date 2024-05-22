@@ -4,7 +4,7 @@ import './Footer.css';
 const Footer = () => (
   <footer className="footer">
     <div className="footer-content">
-      <p>&copy; 2024 Music Recommendation System</p>
+      <p>&copy; NHÓM 10 - 2024 Music Recommendation System</p>
       <div className="social-links">
         <a href="#" className="social-link">
           <i className="fab fa-facebook-f"></i>

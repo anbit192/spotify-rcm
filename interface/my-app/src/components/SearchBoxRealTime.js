@@ -72,7 +72,7 @@ const SearchBoxRealTime = ({ onSearch }) => {
     <Container>
       <Input
         type="text"
-        placeholder="Search for a song..."
+        placeholder="Nhập tên bài hát..."
         value={searchTerm}
         onChange={handleChange}
       />
