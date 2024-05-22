@@ -1,0 +1,6 @@
+/data
+*.pickle
+*.cache
+*.env
+*.csv
+/__pycache__

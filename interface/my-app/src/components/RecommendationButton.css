@@ -1,0 +1,27 @@
+.recommendation-button {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .recommendation-button button {
+    background-color: #1DB954; /* Spotify green */
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .recommendation-button button:hover {
+    background-color: #1aa34a;
+    transform: scale(1.05);
+  }
+  
+  .recommendation-button button:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(29, 185, 84, 0.3);
+  }
+  

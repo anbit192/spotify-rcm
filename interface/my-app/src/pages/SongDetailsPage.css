@@ -1,0 +1,85 @@
+.song-details-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .song-details-page h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .song-details-page p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  .song-details-page img {
+    display: block;
+    margin: 0 auto 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .song-details-page iframe {
+    display: block;
+    margin: 0 auto 20px auto;
+    border: none;
+    border-radius: 8px;
+  }
+  
+  .recommendation-button {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .recommended-tracks {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .recommended-tracks li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+  }
+  
+  .recommended-tracks li:hover {
+    transform: scale(1.02);
+  }
+  
+  .recommended-tracks li p {
+    margin-top: 10px;
+    color: #333;
+    text-align: center;
+  }
+  
+  @media (max-width: 600px) {
+    .song-details-page {
+      padding: 10px;
+    }
+  
+    .recommended-tracks li {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .recommended-tracks li iframe {
+      margin-bottom: 10px;
+    }
+  }
+
+
