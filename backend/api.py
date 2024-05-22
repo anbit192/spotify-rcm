@@ -58,12 +58,6 @@ def process_json_input(input_track_feats):
 
 @app.post("/recommend", response_model=TrackID, status_code=status.HTTP_200_OK)
 async def get_recommended_tracks(input_track_feats: AudioFeatures):
-    """
-    Hàm nhận features 1 bài nhạc để nhận lại IDs đề xuất của các bài nhạc khác
-    Status code:
-    - 200: Thành công.
-    - 422: Truyền dữ liệu không hợp lệ.
-    """
     input_vector = process_json_input(input_track_feats)
     return rcm.get_recommendation_ID(input_vector)
 
